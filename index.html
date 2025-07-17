@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gardino Hotel & Residence - Dining Experience Survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a472a;
+            --primary-light: #2d6242;
+            --secondary-color: #f5f5f5;
+            --accent-color: #c19a6b;
+            --text-color: #333333;
+            --light-text: #777777;
+            --border-color: #e0e0e0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .survey-card {
+            background-color: rgba(255, 255, 255, 0.97);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .survey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .survey-header {
+            text-align: center;
+            padding: 40px 30px 30px;
+            position: relative;
+        }
+        
+        .hotel-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent-color);
+        }
+        
+        .hotel-logo i {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+        
+        .survey-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .survey-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .survey-title::before,
+        .survey-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .survey-title::before {
+            left: -40px;
+        }
+        
+        .survey-title::after {
+            right: -40px;
+        }
+        
+        .survey-header p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .food-graphic {
+            width: 100%;
+            height: 200px;
+            background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .food-graphic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.03);
+        }
+        
+        .survey-form {
+            padding: 30px 40px 40px;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 30px;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        
+        .form-group.required label::after {
+            content: ' *';
+            color: #d9534f;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: var(--transition);
+            background-color: rgba(255,255,255,0.9);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+            background-color: white;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-container {
+            margin-top: 15px;
+        }
+        
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            gap: 8px;
+        }
+        
+        .rating-option {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+        
+        .rating-option label {
+            display: block;
+            padding: 12px 5px;
+            background-color: var(--secondary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--light-text);
+        }
+        
+        .rating-option input[type="radio"]:checked + label {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(26, 71, 42, 0.2);
+        }
+        
+        .rating-option:hover label {
+            background-color: #e8e8e8;
+        }
+        
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--light-text);
+        }
+        
+        .rating-labels span {
+            flex: 1;
+            text-align: center;
+            padding: 0 5px;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(26, 71, 42, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 71, 42, 0.4);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+        
+        .submit-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .thank-you {
+            text-align: center;
+            padding: 60px 40px;
+            display: none;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 5px 15px rgba(26, 71, 42, 0.2);
+        }
+        
+        .thank-you h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .thank-you p {
+            margin-bottom: 25px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+        
+        .back-btn {
+            background: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 12px 25px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 30px auto;
+            }
+            
+            .survey-header {
+                padding: 30px 20px;
+            }
+            
+            .survey-header h1 {
+                font-size: 2rem;
+            }
+            
+            .survey-title {
+                font-size: 1.5rem;
+            }
+            
+            .survey-title::before,
+            .survey-title::after {
+                width: 20px;
+            }
+            
+            .survey-title::before {
+                left: -20px;
+            }
+            
+            .survey-title::after {
+                right: -20px;
+            }
+            
+            .food-graphic {
+                height: 150px;
+            }
+            
+            .survey-form {
+                padding: 25px;
+            }
+            
+            .rating-scale {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .rating-option {
+                flex: 0 0 calc(20% - 5px);
+            }
+            
+            .rating-labels {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .survey-header {
+                padding: 25px 15px;
+            }
+            
+            .survey-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .survey-title {
+                font-size: 1.3rem;
+                padding: 0 15px;
+            }
+            
+            .survey-title::before,
+            .survey-title::after {
+                width: 15px;
+            }
+            
+            .survey-title::before {
+                left: -15px;
+            }
+            
+            .survey-title::after {
+                right: -15px;
+            }
+            
+            .food-graphic {
+                height: 120px;
+                margin: 10px 0;
+            }
+            
+            .survey-form {
+                padding: 20px 15px;
+            }
+            
+            .rating-option {
+                flex: 0 0 calc(33.333% - 4px);
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 14px;
+            }
+            
+            .thank-you {
+                padding: 40px 20px;
+            }
+            
+            .thank-you h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="survey-card">
+            <div class="survey-header">
+                <div class="hotel-logo">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h1>Gardino Hotel & Residence</h1>
+                <div class="survey-title">Dining Experience Survey</div>
+                <p>We value your feedback to help us improve our culinary offerings</p>
+            </div>
+            
+            <div class="food-graphic"></div>
+            
+            <form id="surveyForm" class="survey-form" action="https://formspree.io/f/xkgzgwev" method="POST">
+                <!-- Rest of your form content remains the same -->
+                <div class="form-section">
+                    <h2 class="section-title">Your Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label for="visit-date">Date of Visit</label>
+                        <input type="date" id="visit-date" name="visit-date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label for="meal-type">Type of Dining Experience</label>
+                        <select id="meal-type" name="meal-type" class="form-control" required>
+                            <option value="">Select dining experience</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="room-service">Room Service</option>
+                            <option value="bar-lounge">Bar & Lounge</option>
+                            <option value="special-event">Special Event</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Dining Evaluation</h2>
+                    
+                    <div class="form-group required">
+                        <label>Overall food quality</label>
+                        <div class="rating-container">
+                            <div class="rating-scale">
+                                <div class="rating-option">
+                                    <input type="radio" id="quality-1" name="food-quality" value="1" required>
+                                    <label for="quality-1">1</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="quality-2" name="food-quality" value="2">
+                                    <label for="quality-2">2</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="quality-3" name="food-quality" value="3">
+                                    <label for="quality-3">3</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="quality-4" name="food-quality" value="4">
+                                    <label for="quality-4">4</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="quality-5" name="food-quality" value="5">
+                                    <label for="quality-5">5</label>
+                                </div>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Poor</span>
+                                <span>Fair</span>
+                                <span>Good</span>
+                                <span>Very Good</span>
+                                <span>Excellent</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label>Food presentation</label>
+                        <div class="rating-container">
+                            <div class="rating-scale">
+                                <div class="rating-option">
+                                    <input type="radio" id="presentation-1" name="food-presentation" value="1" required>
+                                    <label for="presentation-1">1</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="presentation-2" name="food-presentation" value="2">
+                                    <label for="presentation-2">2</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="presentation-3" name="food-presentation" value="3">
+                                    <label for="presentation-3">3</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="presentation-4" name="food-presentation" value="4">
+                                    <label for="presentation-4">4</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="presentation-5" name="food-presentation" value="5">
+                                    <label for="presentation-5">5</label>
+                                </div>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Poor</span>
+                                <span>Fair</span>
+                                <span>Good</span>
+                                <span>Very Good</span>
+                                <span>Excellent</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label>Menu variety & creativity</label>
+                        <div class="rating-container">
+                            <div class="rating-scale">
+                                <div class="rating-option">
+                                    <input type="radio" id="variety-1" name="menu-variety" value="1" required>
+                                    <label for="variety-1">1</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="variety-2" name="menu-variety" value="2">
+                                    <label for="variety-2">2</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="variety-3" name="menu-variety" value="3">
+                                    <label for="variety-3">3</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="variety-4" name="menu-variety" value="4">
+                                    <label for="variety-4">4</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="variety-5" name="menu-variety" value="5">
+                                    <label for="variety-5">5</label>
+                                </div>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Limited</span>
+                                <span>Basic</span>
+                                <span>Good</span>
+                                <span>Creative</span>
+                                <span>Exceptional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label>Service quality</label>
+                        <div class="rating-container">
+                            <div class="rating-scale">
+                                <div class="rating-option">
+                                    <input type="radio" id="service-1" name="service-quality" value="1" required>
+                                    <label for="service-1">1</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="service-2" name="service-quality" value="2">
+                                    <label for="service-2">2</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="service-3" name="service-quality" value="3">
+                                    <label for="service-3">3</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="service-4" name="service-quality" value="4">
+                                    <label for="service-4">4</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="service-5" name="service-quality" value="5">
+                                    <label for="service-5">5</label>
+                                </div>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Poor</span>
+                                <span>Fair</span>
+                                <span>Good</span>
+                                <span>Excellent</span>
+                                <span>Outstanding</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label>Ambiance & cleanliness</label>
+                        <div class="rating-container">
+                            <div class="rating-scale">
+                                <div class="rating-option">
+                                    <input type="radio" id="ambiance-1" name="ambiance" value="1" required>
+                                    <label for="ambiance-1">1</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="ambiance-2" name="ambiance" value="2">
+                                    <label for="ambiance-2">2</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="ambiance-3" name="ambiance" value="3">
+                                    <label for="ambiance-3">3</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="ambiance-4" name="ambiance" value="4">
+                                    <label for="ambiance-4">4</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="ambiance-5" name="ambiance" value="5">
+                                    <label for="ambiance-5">5</label>
+                                </div>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Poor</span>
+                                <span>Fair</span>
+                                <span>Good</span>
+                                <span>Excellent</span>
+                                <span>Luxurious</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2 class="section-title">Additional Feedback</h2>
+                    
+                    <div class="form-group">
+                        <label for="favorite-dish">What was your favorite dish or drink?</label>
+                        <input type="text" id="favorite-dish" name="favorite-dish" class="form-control" placeholder="Please mention the dish/drink name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="least-favorite">Was there anything you didn't enjoy?</label>
+                        <input type="text" id="least-favorite" name="least-favorite" class="form-control" placeholder="Please share your concerns">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="improvements">How can we improve our dining experience?</label>
+                        <textarea id="improvements" name="improvements" class="form-control" placeholder="Your valuable suggestions..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Any other comments about your experience?</label>
+                        <textarea id="comments" name="comments" class="form-control" placeholder="We'd love to hear more..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn">
+                        Submit Feedback <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="thank-you" id="thankYou">
+            <div class="thank-you-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Thank You For Your Feedback</h2>
+            <p>We sincerely appreciate you taking the time to share your dining experience with us at Gardino Hotel & Residence.</p>
+            <p>Your feedback is invaluable in helping us maintain our high standards and continue to deliver exceptional culinary experiences to all our guests.</p>
+            <p>A member of our management team will review your comments personally. If you provided contact information, we may reach out to you to discuss your experience further.</p>
+            <button class="back-btn" id="backBtn">
+                <i class="fas fa-arrow-left"></i> Back to Survey
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('surveyForm');
+            const thankYou = document.getElementById('thankYou');
+            const backBtn = document.getElementById('backBtn');
+            const submitBtn = form.querySelector('.submit-btn');
+            const surveyCard = document.querySelector('.survey-card');
+            
+            // Form validation
+            function validateForm() {
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                    } else {
+                        field.classList.remove('error');
+                    }
+                    
+                    // Special validation for radio groups
+                    if (field.type === 'radio') {
+                        const radioGroup = form.querySelectorAll(`[name="${field.name}"]`);
+                        const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                        
+                        if (!isChecked) {
+                            isValid = false;
+                            radioGroup.forEach(radio => {
+                                radio.closest('.rating-option').classList.add('error');
+                            });
+                        } else {
+                            radioGroup.forEach(radio => {
+                                radio.closest('.rating-option').classList.remove('error');
+                            });
+                        }
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            // Form submission handler
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    alert('Please complete all required fields before submitting.');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+                submitBtn.innerHTML = 'Submitting <i class="fas fa-spinner"></i>';
+                
+                try {
+                    // Submit the form to Formspree
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Show success message
+                        surveyCard.style.display = 'none';
+                        thankYou.style.display = 'block';
+                        
+                        // Scroll to thank you message
+                        thankYou.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Reset form
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('There was an error submitting your feedback. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    submitBtn.innerHTML = 'Submit Feedback <i class="fas fa-paper-plane"></i>';
+                }
+            });
+            
+            // Back button handler
+            backBtn.addEventListener('click', function() {
+                thankYou.style.display = 'none';
+                surveyCard.style.display = 'block';
+                surveyCard.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Add input validation styling
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.hasAttribute('required')) {
+                        if (this.value.trim()) {
+                            this.classList.remove('error');
+                        } else {
+                            this.classList.add('error');
+                        }
+                    }
+                });
+            });
+            
+            // Special handling for radio buttons
+            const radioGroups = {};
+            form.querySelectorAll('input[type="radio"]').forEach(radio => {
+                if (!radioGroups[radio.name]) {
+                    radioGroups[radio.name] = [];
+                }
+                radioGroups[radio.name].push(radio);
+                
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        radioGroups[this.name].forEach(r => {
+                            r.closest('.rating-option').classList.remove('error');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
